@@ -1,0 +1,25 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+umask 0037 #override default umask
+
+[[ -x "$(command -v bw)" ]] && export BW_SESSION="$(bw unlock --raw --passwordfile $HOME/.config/.sfiles/pass)"
+
+# Source config files
+[[ -f $HOME/.config/.environment ]] && source $HOME/.config/.environment
+[[ -f $HOME/.config/.aliases ]] && source $HOME/.config/.aliases
+
