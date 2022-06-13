@@ -1,0 +1,25 @@
+export TERM="xterm-256color"
+export EDITOR=$(which vim)
+
+#Adding custom scripts to PATH
+#export PATH=$HOME/workd/scripts/bash:$PATH
+#export PATH=/usr/local/go/bin:$PATH
+
+#Adding Maven to PATH
+#export PATH=/opt/apache-maven-3.6.3/bin:$PATH
+
+#export JAVA_HOME=/usr/lib/jvm/default-java
+#export PATH=$JAVA_HOME/bin:$PATH
+
+#Adding Oracle client to PATH
+#export LD_LIBRARY_PATH=/opt/oracle/instantclient_21_1:$LD_LIBRARY_PATH
+#export PATH=/opt/oracle/instantclient_21_1:$PATH
+
+#Fixing curl by pointing it to the appropriate CA bundle
+[[ -f "/etc/ssl/cert.pem" ]] && export CURL_CA_BUNDLE="/etc/ssl/cert.pem"
+[[ -f "/etc/ssl/cert.pem" ]] && export REQUESTS_CA_BUNDLE="/etc/ssl/cert.pem"
+
+{{- if eq .chezmoi.osRelease.id "fedora" }}
+export TF_VAR_token="{{ (bitwarden "item" "linode-terraform").notes }}"
+export TF_VAR_root_pass="{{ (bitwarden "item" "linode-root-pass").notes }}"
+{{- end }}

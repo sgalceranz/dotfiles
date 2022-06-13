@@ -1,0 +1,8 @@
+# .bash_profile
+
+# Loading profile settings
+[ -f ~/.config/.profile ] && source ~/.config/.profile
+
+# Get the aliases and functions
+[ -f ~/.bashrc ] && source ~/.bashrc
+

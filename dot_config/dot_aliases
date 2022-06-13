@@ -1,0 +1,31 @@
+# Command Aliases
+alias ls='ls --color=auto'
+alias ll='ls -lah --color=auto'
+alias grep='grep --color=auto'
+
+# Set RC
+RSHELL="$(echo $0 )"
+RC=""
+case "$RSHELL" in
+    bash)
+        RC=".bashrc"
+        ;;
+    zsh)
+        RC=".zshrc"
+        ;;
+esac
+
+# Conditional alias to editor configuration
+if [[ -x "$(command -v chezmoi)" ]]; then
+    alias cmoi='chezmoi'
+    [[ -f "$HOME/.config/.profile" ]] && alias ep="chezmoi edit $HOME/.config/.profile"
+    [[ -f "$HOME/.vimrc" ]] && alias evim="chezmoi edit $HOME/.vimrc"
+    [[ -f "$HOME/$RC" ]] && alias ec="chezmoi edit $HOME/$RC"
+else
+    [[ -f "$HOME/.config/.profile" ]] && alias ep="$EDITOR $HOME/.config/.profile"
+    [[ -f "$HOME/.vimrc" ]] && alias evim="$EDITOR $HOME/.vimrc"
+    [[ -f "$HOME/$RC" ]] && alias ec="$EDITOR $HOME/$RC"
+fi
+
+alias sc="source $HOME/$RC"
+unset RC && unset RSHELL
