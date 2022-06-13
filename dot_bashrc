@@ -17,7 +17,7 @@ export PATH
 
 umask 0037 #override default umask
 
-[[ -x "$(command -v bw)" ]] && export BW_SESSION="$(bw unlock --raw --passwordfile $HOME/.config/.sfiles/pass)"
+[[ -x "$(command -v bw)" ]] && export BW_SESSION="$(bw unlock --raw)"
 
 # Source config files
 [[ -f $HOME/.config/.environment ]] && source $HOME/.config/.environment
