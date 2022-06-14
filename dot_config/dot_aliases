@@ -28,4 +28,10 @@ else
 fi
 
 alias sc="source $HOME/$RC"
+
+# Custom aliases
+alias ssh-init="eval $(ssh-agent -s) && ssh-add"
+
+# Unset vars
 unset RC && unset RSHELL
+
