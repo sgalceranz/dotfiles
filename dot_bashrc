@@ -23,3 +23,5 @@ umask 0037 #override default umask
 [[ -f $HOME/.config/.environment ]] && source $HOME/.config/.environment
 [[ -f $HOME/.config/.aliases ]] && source $HOME/.config/.aliases
 
+# Custom Functions
+
