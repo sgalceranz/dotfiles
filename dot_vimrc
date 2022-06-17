@@ -60,7 +60,9 @@ endif
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
-colorscheme dracula
+if !empty(glob('$HOME/.vim/plugged/dracula'))
+  colorscheme dracula
+endif
 
 " Options for CtrlP
 let g:ctrlp_map = '<c-p>'
