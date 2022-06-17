@@ -4,14 +4,14 @@ alias ll='ls -lah --color=auto'
 alias grep='grep --color=auto'
 
 # Set RC
-RSHELL="$(echo $0 )"
-RC=""
+RSHELL=$([[ -n $ZSH_VERSION ]] && echo 'zsh' || [[ -n $BASH_VERSION ]] && echo 'bash')
+RC=''
 case "$RSHELL" in
     bash)
-        RC=".bashrc"
+        RC='.bashrc'
         ;;
     zsh)
-        RC=".zshrc"
+        RC='.zshrc'
         ;;
 esac
 
@@ -26,11 +26,10 @@ else
     [[ -f "$HOME/.vimrc" ]] && alias evim="$EDITOR $HOME/.vimrc"
     [[ -f "$HOME/$RC" ]] && alias ec="$EDITOR $HOME/$RC"
 fi
-
 alias sc="source $HOME/$RC"
 
 # Custom aliases
-alias ssh-init="eval $(ssh-agent -s) && ssh-add"
+alias ssh-init='eval $(ssh-agent -s) && ssh-add'
 
 # Unset vars
 unset RC && unset RSHELL
