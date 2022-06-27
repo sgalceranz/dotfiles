@@ -5,19 +5,35 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-# User specific environment
-if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
-then
-    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
-fi
-export PATH
-
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
 
 umask 0037 #override default umask
 
+set -o vi
+
+HISTCONTROL=ignoredups
+HISTFILESIZE=2000
+HISTSIZE=2000
+shopt -s histappend
+
+shopt -s autocd
+shopt -s checkjobs
+
 [[ -x "$(command -v bw)" ]] && export BW_SESSION="$(bw unlock --raw)"
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/bin:" ]]
+then
+    PATH="$HOME/bin:$PATH"
+fi
+export PATH
+
+if ! [[ "$PATH" =~ "$HOME/.local/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+export PATH
 
 # Source config files
 [[ -f $HOME/.config/.environment ]] && source $HOME/.config/.environment
