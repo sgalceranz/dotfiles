@@ -9,9 +9,10 @@
 {{- if hasKey . "name" -}}
 {{-   $name = .name -}}
 {{- else -}}
-{{-   $name := promptString "name" -}}
+{{-   $name = promptString "name" -}}
 {{- end -}}
 
 data:
   email: {{ $email | quote }}
   name: {{ $name | quote }}
+
