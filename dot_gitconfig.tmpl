@@ -1,5 +1,10 @@
 [user]
-	email = {{ .email }}
-	name = {{ .name }}
+    email = {{ .email }}
+    name = {{ .name }}
 [init]
-	defaultBranch = main
+    defaultBranch = main
+[color]
+    ui = true
+[alias]
+    lg = log --all --decorate --oneline --graph
+    g = log --graph --pretty='format:%Cred%h%Creset %Cgreen%ai%Creset %C(bold blue)%an%Creset%C(yellow)%d%Creset %s'
