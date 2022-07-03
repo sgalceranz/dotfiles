@@ -23,4 +23,5 @@ export GPG_TTY=$(tty)
 {{- if eq .chezmoi.osRelease.id "fedora" }}
 export TF_VAR_token="{{ (bitwarden "item" "linode-terraform").notes }}"
 export TF_VAR_root_pass="{{ (bitwarden "item" "linode-root-pass").notes }}"
+export LINODE_CLI_TOKEN="{{ (bitwarden "item" "linode-cli-readonly").notes }}"
 {{- end }}
