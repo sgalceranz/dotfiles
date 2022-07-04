@@ -1,4 +1,11 @@
 # .bashrc
+# Pulls defaults from Fedora and Ubuntu's ~/.bashrc files
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
@@ -12,10 +19,19 @@ set -o vi
 HISTCONTROL=ignoredups
 HISTFILESIZE=2000
 HISTSIZE=2000
+# append to the history file, don't overwrite it
 shopt -s histappend
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
 
 shopt -s autocd
 shopt -s checkjobs
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
 
 [[ -x "$(command -v bw)" ]] && export BW_SESSION="$(bw unlock --raw)"
 
@@ -26,8 +42,6 @@ then
 fi
 export PATH
 
-# Uncomment the following line if you don't like systemctl's auto-paging feature:
-# export SYSTEMD_PAGER=
 
 # Source config files
 [[ -f "$HOME/.config/.environment" ]] && source $HOME/.config/.environment
@@ -35,3 +49,13 @@ export PATH
 
 # Custom Functions
 
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
