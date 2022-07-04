@@ -12,14 +12,14 @@
 {{-   $name = promptString "name" -}}
 {{- end -}}
 
-{{- $shared := "" -}}
-{{- if hasKey . "shared" -}}
-{{-   $shared = .shared -}}
+{{- $personal := "" -}}
+{{- if hasKey . "personal" -}}
+{{-   $personal = .personal -}}
 {{- else -}}
-{{-   $shared = promptBool "is this shared (work environment)?" true -}}
+{{-   $personal = promptBool "is personal setup?" false -}}
 {{- end -}}
 
 data:
   email: {{ $email | quote }}
   name: {{ $name | quote }}
-  shared: {{ $shared }}
+  personal: {{ $personal }}
