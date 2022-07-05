@@ -29,12 +29,6 @@ shopt -s checkwinsize
 shopt -s autocd
 shopt -s checkjobs
 
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-
-[[ -x "$(command -v bw)" ]] && export BW_SESSION="$(bw unlock --raw)"
-
 # User specific environment
 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
 then
@@ -42,6 +36,10 @@ then
 fi
 export PATH
 
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+[[ -x "$(command -v bw)" ]] && export BW_SESSION="$(bw unlock --raw)"
 
 # Source config files
 [[ -f "$HOME/.config/.environment" ]] && source $HOME/.config/.environment
