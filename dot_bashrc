@@ -39,7 +39,10 @@ export PATH
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-[[ -x "$(command -v bw)" ]] && export BW_SESSION="$(bw unlock --raw)"
+if [[ -x "$(command -v bw)" ]]
+then
+    export BW_SESSION="$(bw unlock --raw || bw login)" && bw sync
+fi
 
 # Source config files
 [[ -f "$HOME/.config/.environment" ]] && source $HOME/.config/.environment
