@@ -32,13 +32,18 @@ shopt -s checkjobs
 # Custom prompt
 export PROMPT_DIRTRIM=2
 #export PS1="(\H) \[\e[36m\]\w\[\e[0m\] $ "
-[[ -f /etc/bash_completion.d/git-prompt ]] && source /etc/bash_completion.d/git-prompt
-export GIT_PS1_SHOWCOLORHINTS=true
-export GIT_PS1_SHOWUPSTREAM=auto
-export GIT_PS1_SHOWUNTRACKEDFILES=true
-export GIT_PS1_SHOWDIRTYSTATE=true
-#export PS1="(\H) \[\e[36m\]\w\[\e[0m\] $(__git_ps1 " (%s)")\$ "
-export PROMPT_COMMAND='__git_ps1 "(\h):\[\e[36m\]\w\[\e[0m\]" "\\\$ "'
+if [[ -f /etc/bash_completion.d/git-prompt ]]
+then
+    source /etc/bash_completion.d/git-prompt
+    export GIT_PS1_SHOWCOLORHINTS=true
+    export GIT_PS1_SHOWUPSTREAM=auto
+    export GIT_PS1_SHOWUNTRACKEDFILES=true
+    export GIT_PS1_SHOWDIRTYSTATE=true
+    #export PS1="(\H) \[\e[36m\]\w\[\e[0m\] $(__git_ps1 " (%s)")\$ "
+    export PROMPT_COMMAND='__git_ps1 "(\h):\[\e[36m\]\w\[\e[0m\]" "\\\$ "'
+else
+    export PS1="(\h):\e[0;32m\w\e[0m \$ "
+fi
 
 # User specific environment
 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
