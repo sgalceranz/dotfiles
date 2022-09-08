@@ -29,6 +29,17 @@ shopt -s checkwinsize
 shopt -s autocd
 shopt -s checkjobs
 
+# Custom prompt
+export PROMPT_DIRTRIM=2
+#export PS1="(\H) \[\e[36m\]\w\[\e[0m\] $ "
+[[ -f /etc/bash_completion.d/git-prompt ]] && source /etc/bash_completion.d/git-prompt
+export GIT_PS1_SHOWCOLORHINTS=true
+export GIT_PS1_SHOWUPSTREAM=auto
+export GIT_PS1_SHOWUNTRACKEDFILES=true
+export GIT_PS1_SHOWDIRTYSTATE=true
+#export PS1="(\H) \[\e[36m\]\w\[\e[0m\] $(__git_ps1 " (%s)")\$ "
+export PROMPT_COMMAND='__git_ps1 "(\h):\[\e[36m\]\w\[\e[0m\]" "\\\$ "'
+
 # User specific environment
 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
 then
@@ -41,7 +52,7 @@ export PATH
 
 if [[ -x "$(command -v bw)" ]]
 then
-    export BW_SESSION="$(bw unlock --raw || bw login)" && bw sync
+    [[ -z $BW_SESSION ]] && export BW_SESSION="$(bw unlock --raw || bw login)" && bw sync
 fi
 
 # Source config files
