@@ -9,7 +9,6 @@ README.md
 .bash_profile
 .bashrc
 .config
-.gitconfig
 .vimrc
 {{ else }}
 Documents
