@@ -1,10 +1,8 @@
 $ErrorActionPreference = "Stop"
 $WarningPreference = "SilentlyContinue"
 
-$PATH = Split-Path $($MyInvocation.MyCommand.Path) -Parent
-
-. $PATH\Functions.ps1
-. $PATH\Aliases.ps1
+. $PSScriptRoot\Functions.ps1
+. $PSScriptRoot\Aliases.ps1
 
 Initialize-BWStore
 
