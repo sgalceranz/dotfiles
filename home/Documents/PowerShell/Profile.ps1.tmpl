@@ -1,15 +1,15 @@
-$ErrorActionPreference = "Stop"
+$ErrorActionPreference = "SilentlyContinue"
 $WarningPreference = "SilentlyContinue"
 
 . $PSScriptRoot\Functions.ps1
 . $PSScriptRoot\Aliases.ps1
 
 {{ if .personal -}}
-Initialize-BWStore
-
 #Load some modules
 $modules = "Pester","PSScriptAnalyzer"
 $modules.ForEach({ Import-PModule $_ })
+
+Initialize-BWStore
 {{- else }}
 #Load some modules
 #$modules = "PowerShellGet","xPSDesiredStateConfiguration","Pester","PSScriptAnalyzer","Octoposh","dbatools","PSmRemoteNG"

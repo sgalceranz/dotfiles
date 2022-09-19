@@ -5,7 +5,7 @@ function Initialize-PModule {
     $commonOpts = @{
         Confirm=$false
         Force=$true
-        #Verbose=$true
+        Verbose=$true
     }
     Install-Module -Name $Name @commonOpts
 }
