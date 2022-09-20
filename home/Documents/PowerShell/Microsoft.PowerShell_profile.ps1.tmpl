@@ -1,0 +1,24 @@
+$ErrorActionPreference = "SilentlyContinue"
+$WarningPreference = "SilentlyContinue"
+
+. $PSScriptRoot\Functions.ps1
+. $PSScriptRoot\Aliases.ps1
+
+{{ if .personal -}}
+#Load some modules
+$modules = "Pester","PSScriptAnalyzer"
+$modules.ForEach({ Import-PModule $_ })
+
+Initialize-BWStore
+{{- else }}
+#Load some modules
+#$modules = "PowerShellGet","xPSDesiredStateConfiguration","Pester","PSScriptAnalyzer","Octoposh","dbatools","PSmRemoteNG"
+#$modules = "Pester","PSScriptAnalyzer","Octoposh","dbatools"
+#$modules = "Pester","PSScriptAnalyzer","Octoposh"
+$modules = "Pester","PSScriptAnalyzer"
+$modules.ForEach({ Import-PModule $_ })
+{{- end }}
+
+$env:EDITOR = "code --wait"
+
+Set-Location -Path "$HOME\home"
