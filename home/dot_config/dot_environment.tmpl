@@ -2,6 +2,9 @@ export TERM="xterm-256color"
 export EDITOR=$(which vim)
 export GPG_TTY=$(tty)
 
+#Addi GOPATH
+[[ -e "$HOME/go" ]] && export GOPATH=$HOME/go && export PATH=$PATH:$GOPATH/bin
+
 #Adding custom scripts to PATH
 #export PATH=$HOME/workd/scripts/bash:$PATH
 #export PATH=/usr/local/go/bin:$PATH
