@@ -3,7 +3,7 @@ export EDITOR=$(which vim)
 export GPG_TTY=$(tty)
 
 #Addi GOPATH
-[[ -e "$HOME/go" ]] && export GOPATH=$HOME/go && export PATH=$PATH:$GOPATH/bin
+[[ -e "$HOME/go" ]] && export GOPATH=$HOME/go && export PATH=$GOPATH/bin:$PATH
 
 #Adding custom scripts to PATH
 #export PATH=$HOME/workd/scripts/bash:$PATH
