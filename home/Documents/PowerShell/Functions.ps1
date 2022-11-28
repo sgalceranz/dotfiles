@@ -51,3 +51,8 @@ Set-Alias 'eng' -Value 'Edit-mRemoteNGConfig'
 function Update-mRemoteNGConfig {
     & C:\Users\SergioGalceran\home\workd\scripts\powershell\utils\Create-mRemoteNGConfigFile.ps1 -ExportPath C:\Users\SergioGalceran\tools\CCMP-RemoteConnections.xml
 }
+
+function Get-MyPublicIP {
+    $ip = Invoke-RestMethod -Uri 'https://api.ipify.org?format=json'
+    Write-Output $ip.ip
+}
