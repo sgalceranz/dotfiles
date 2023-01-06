@@ -12,7 +12,7 @@
     lg = log --all --decorate --oneline --graph
     g = log --graph --pretty='format:%Cred%h%Creset %Cgreen%ai%Creset %C(bold blue)%an%Creset%C(yellow)%d%Creset %s'
     sc = commit -S
-{{ if eq .chezmoi.os "windows" -}}
+{{- if eq .chezmoi.os "windows" }}
 [core]
     longpaths = true
     ignorecase = false
@@ -20,4 +20,8 @@
 {{- if .gpgsigningkey }}
 [commit]
     gpgsign = true
+{{- end }}
+{{- if and (eq .chezmoi.os "windows") ( .gpgtool ) }}
+[gpg]
+    program = {{ .gpgtool }}
 {{- end }}
