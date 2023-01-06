@@ -1,6 +1,9 @@
 [user]
     email = {{ .email }}
     name = {{ .name }}
+    {{- if .gpgsigningkey }}
+    signingkey = {{ .gpgsigningkey }}
+    {{- end }}
 [init]
     defaultBranch = main
 [color]
@@ -8,5 +11,13 @@
 [alias]
     lg = log --all --decorate --oneline --graph
     g = log --graph --pretty='format:%Cred%h%Creset %Cgreen%ai%Creset %C(bold blue)%an%Creset%C(yellow)%d%Creset %s'
+    sc = commit -S
+{{ if eq .chezmoi.os "windows" -}}
 [core]
     longpaths = true
+    ignorecase = false
+{{- end }}
+{{- if .gpgsigningkey }}
+[commit]
+    gpgsign = true
+{{- end }}
