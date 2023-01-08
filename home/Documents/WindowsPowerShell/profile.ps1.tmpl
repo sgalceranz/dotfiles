@@ -4,7 +4,7 @@ $WarningPreference = "SilentlyContinue"
 . $PSScriptRoot\Functions.ps1
 . $PSScriptRoot\Aliases.ps1
 
-{{ if .personal -}}
+{{ if eq .setup "personal" -}}
 #Load some modules
 $modules = "Pester","PSScriptAnalyzer"
 $modules.ForEach({ Import-PModule $_ })
