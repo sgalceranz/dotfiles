@@ -32,9 +32,10 @@ shopt -s checkjobs
 # Custom prompt
 export PROMPT_DIRTRIM=2
 #export PS1="(\H) \[\e[36m\]\w\[\e[0m\] $ "
-if [[ -f /etc/bash_completion.d/git-prompt ]]
+GIT_COMP_FILE="$HOME/.config/git-prompt.sh"
+if [[ -f $GIT_COMP_FILE ]]
 then
-    source /etc/bash_completion.d/git-prompt
+    source $GIT_COMP_FILE
     export GIT_PS1_SHOWCOLORHINTS=true
     export GIT_PS1_SHOWUPSTREAM=auto
     export GIT_PS1_SHOWUNTRACKEDFILES=true

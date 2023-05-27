@@ -1,0 +1,5 @@
+.config/git-prompt.sh:
+  type: file
+  url: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+  refreshPeriod: 48h
+
