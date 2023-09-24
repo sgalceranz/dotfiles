@@ -3,3 +3,19 @@
   url: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
   refreshPeriod: 48h
 
+repos/my/domains:
+  type: git-repo
+  url: git@gitlab.com:sgalceranz/domains.git
+
+repos/my/pve-terraform:
+  type: git-repo
+  url: git@gitlab.com:sgalceranz/pve-terraform.git
+
+repos/my/linode:
+  type: git-repo
+  url: git@gitlab.com:sgalceranz/linode.git
+
+repos/my/setup-manager-deprecated:
+  type: git-repo
+  url: git@gitlab.com:sgalceranz/setup-manager-deprecated.git
+
