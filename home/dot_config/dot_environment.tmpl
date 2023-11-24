@@ -25,7 +25,8 @@ export GPG_TTY=$(tty)
 [[ -f "/etc/ssl/cert.pem" ]] && export REQUESTS_CA_BUNDLE="/etc/ssl/cert.pem"
 
 {{ if eq .setup "personal" -}}
-export TF_VAR_token="{{ (bitwarden "item" "linode-terraform").notes }}"
-export TF_VAR_root_pass="{{ (bitwarden "item" "linode-root-pass").notes }}"
+export TF_TOKEN_app_terraform_io="{{ (bitwarden "item" "tf-login-app-terraform-io").notes }}"
+export TF_VAR_linode_token="{{ (bitwarden "item" "linode-terraform").notes }}"
+export TF_VAR_linode_root_pass="{{ (bitwarden "item" "linode-root-pass").notes }}"
 export LINODE_CLI_TOKEN="{{ (bitwarden "item" "linode-cli-readonly").notes }}"
 {{- end }}
