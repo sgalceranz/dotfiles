@@ -12,4 +12,5 @@ README.md
 .vimrc
 {{ else }}
 Documents
+wslconfig.txt
 {{ end }}
