@@ -28,5 +28,4 @@ export GPG_TTY=$(tty)
 export TF_TOKEN_app_terraform_io="{{ (bitwarden "item" "tf-login-app-terraform-io").notes }}"
 export TF_VAR_linode_token="{{ (bitwarden "item" "linode-terraform").notes }}"
 export TF_VAR_linode_root_pass="{{ (bitwarden "item" "linode-root-pass").notes }}"
-export LINODE_CLI_TOKEN="{{ (bitwarden "item" "linode-cli-readonly").notes }}"
 {{- end }}
