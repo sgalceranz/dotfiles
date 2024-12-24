@@ -26,11 +26,18 @@
 {{-   $gpgtool = promptString "gpg path" -}}
 {{- end -}}
 
-{{- $gpgsigningkey := "" -}}
-{{- if hasKey . "gpgsigningkey" -}}
-{{-   $gpgsigningkey = .gpgsigningkey -}}
+{{- $gitsigningkey := "" -}}
+{{- if hasKey . "gitsigningkey" -}}
+{{-   $gitsigningkey = .gitsigningkey -}}
 {{- else -}}
-{{-   $gpgsigningkey = promptString "GPG signing key" -}}
+{{-   $gitsigningkey = promptString "GPG signing key (Git)" -}}
+{{- end -}}
+
+{{- $recipient4encryption := "" -}}
+{{- if hasKey . "recipient4encryption" -}}
+{{-   $recipient4encryption = .recipient4encryption -}}
+{{- else -}}
+{{-   $recipient4encryption = promptString "Recipient (encryption)" -}}
 {{- end -}}
 
 ---
@@ -38,10 +45,10 @@ data:
   email: {{ $email | quote }}
   name: {{ $name | quote }}
   setup: {{ $setup | quote }}
-  gpgsigningkey: {{ $gpgsigningkey | quote }}
+  gitsigningkey: {{ $gitsigningkey | quote }}
   gpgtool: {{ $gpgtool | quote }}
 
 encryption: gpg
 gpg:
-  recipient: {{ $email | quote }}
+  recipient: {{ $recipient4encryption | quote }}
   args: "--quiet"
