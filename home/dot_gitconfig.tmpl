@@ -1,8 +1,8 @@
 [user]
-    email = {{ .email }}
-    name = {{ .name }}
-    {{- if .gitsigningkey }}
-    signingkey = {{ .gitsigningkey }}
+    email = {{ .git_email }}
+    name = {{ .git_name }}
+    {{- if .git_signingkey }}
+    signingkey = {{ .git_signingkey }}
     {{- end }}
 [init]
     defaultBranch = main
@@ -17,7 +17,7 @@
     longpaths = true
     ignorecase = false
 {{- end }}
-{{- if .gitsigningkey }}
+{{- if .git_signingkey }}
 [commit]
     gpgsign = true
 {{- end }}

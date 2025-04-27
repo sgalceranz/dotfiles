@@ -1,15 +1,15 @@
-{{- $email := "" -}}
-{{- if hasKey . "email" -}}
-{{-   $email = .email -}}
+{{- $git_email := "" -}}
+{{- if hasKey . "git_email" -}}
+{{-   $git_email = .git_email -}}
 {{- else -}}
-{{-   $email = promptString "email" -}}
+{{-   $git_email = promptString "git email" -}}
 {{- end -}}
 
-{{- $name := "" -}}
-{{- if hasKey . "name" -}}
-{{-   $name = .name -}}
+{{- $git_name := "" -}}
+{{- if hasKey . "git_name" -}}
+{{-   $git_name = .git_name -}}
 {{- else -}}
-{{-   $name = promptString "name" -}}
+{{-   $git_name = promptString "git name" -}}
 {{- end -}}
 
 {{- $setup := "" -}}
@@ -26,29 +26,29 @@
 {{-   $gpgtool = promptString "gpg path" -}}
 {{- end -}}
 
-{{- $gitsigningkey := "" -}}
-{{- if hasKey . "gitsigningkey" -}}
-{{-   $gitsigningkey = .gitsigningkey -}}
+{{- $git_signingkey := "" -}}
+{{- if hasKey . "git_signingkey" -}}
+{{-   $git_signingkey = .git_signingkey -}}
 {{- else -}}
-{{-   $gitsigningkey = promptString "GPG signing key (Git)" -}}
+{{-   $git_signingkey = promptString "GPG signing key (Git)" -}}
 {{- end -}}
 
-{{- $recipient4encryption := "" -}}
-{{- if hasKey . "recipient4encryption" -}}
-{{-   $recipient4encryption = .recipient4encryption -}}
+{{- $recipient_encrypt := "" -}}
+{{- if hasKey . "recipient_encrypt" -}}
+{{-   $recipient_encrypt = .recipient_encrypt -}}
 {{- else -}}
-{{-   $recipient4encryption = promptString "Recipient (encryption)" -}}
+{{-   $recipient_encrypt = promptString "Recipient (encryption)" -}}
 {{- end -}}
 
 ---
 data:
-  email: {{ $email | quote }}
-  name: {{ $name | quote }}
+  git_email: {{ $git_email | quote }}
+  git_name: {{ $git_name | quote }}
   setup: {{ $setup | quote }}
-  gitsigningkey: {{ $gitsigningkey | quote }}
+  git_signingkey: {{ $git_signingkey | quote }}
   gpgtool: {{ $gpgtool | quote }}
 
 encryption: gpg
 gpg:
-  recipient: {{ $recipient4encryption | quote }}
+  recipient: {{ $recipient_encrypt | quote }}
   args: "--quiet"

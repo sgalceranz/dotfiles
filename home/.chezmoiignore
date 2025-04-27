@@ -1,9 +1,5 @@
 README.md
 
-{{ if eq .setup "work" }}
-.ssh
-{{ end }}
-
 {{ if eq .chezmoi.os "windows" }}
 .bash_logout
 .bash_profile
@@ -12,5 +8,5 @@ README.md
 .vimrc
 {{ else }}
 Documents
-.wslconfig.txt
+.wslconfig
 {{ end }}
