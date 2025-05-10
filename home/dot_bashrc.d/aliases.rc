@@ -29,7 +29,6 @@ fi
 alias sc="source $HOME/$RC"
 
 # Custom aliases
-alias ssh-init='eval $(ssh-agent -s) && ssh-add'
 [[ -x "$(command -v terraform)" ]] && alias tf='terraform'
 [[ -x "$(command -v linode-cli)" ]] && alias l='linode-cli'
 

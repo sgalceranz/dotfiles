@@ -56,12 +56,17 @@ export PATH
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-if [[ -x "$(command -v bw)" ]]
-then
-    [[ -z $BW_SESSION ]] && export BW_SESSION="$(bw unlock --raw || bw login)" && bw sync
-fi
-
 # Source config files
+# User specific aliases and functions
+if [[ -d ~/.bashrc.d ]]; then
+    for rc in ~/.bashrc.d/*; do
+        if [ -f "$rc" ]; then
+            . "$rc"
+        fi
+    done
+fi
+unset rc
+
 [[ -f "$HOME/.config/.environment" ]] && source $HOME/.config/.environment
 [[ -f "$HOME/.config/.aliases" ]] && source $HOME/.config/.aliases
 
