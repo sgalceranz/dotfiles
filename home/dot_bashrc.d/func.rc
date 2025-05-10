@@ -1,0 +1,31 @@
+# Custom functions
+
+if [[ -x "$(command -v bw)" ]]; then
+    bw-init() {
+        [[ -z $BW_SESSION ]] && export BW_SESSION="$(bw unlock --raw || bw login)" && bw sync
+    }
+fi
+
+bw-get() {
+    target=$1
+    readarray -t items < <(bw list items --search $target | jq -r '.[] | .name')
+    select item in "${items[@]}" quit
+    do
+        case $item in
+            "quit" ) break;;
+            * )
+                bw list items --search $item
+                break;;
+        esac
+    done
+}
+
+# Start ssh-agent and add keys
+ssh-init() {
+    eval $(ssh-agent -s) && ssh-add
+}
+
+# Get the current public IP
+myip() {
+    curl -s https://api.ipify.org && echo
+}
