@@ -8,13 +8,13 @@ fi
 
 bw-get() {
     target=$1
-    readarray -t items < <(bw list items --search $target | jq -r '.[] | .name')
+    readarray -t items < <(bw list items --search $target | jq -r '.[] | .name' | sort)
     select item in "${items[@]}" quit
     do
         case $item in
             "quit" ) break;;
             * )
-                bw list items --search $item
+                bw get item $item
                 break;;
         esac
     done
