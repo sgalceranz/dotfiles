@@ -4,19 +4,19 @@
   url: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
   refreshPeriod: 48h
 
-workspace/repos/domains:
+{{ .repos_ws }}/domains:
   type: git-repo
   url: git@gitlab.com:sgalceranz/domains.git
 
-workspace/repos/pve-terraform:
+{{ .repos_ws }}/pve-terraform:
   type: git-repo
   url: git@gitlab.com:sgalceranz/pve-terraform.git
 
-workspace/repos/linode:
+{{ .repos_ws }}/linode:
   type: git-repo
   url: git@gitlab.com:sgalceranz/linode.git
 
-workspace/repos/setup-manager-deprecated:
+{{ .repos_ws }}/setup-manager-deprecated:
   type: git-repo
   url: git@gitlab.com:sgalceranz/setup-manager-deprecated.git
 

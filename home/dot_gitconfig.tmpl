@@ -9,9 +9,12 @@
 [color]
     ui = true
 [alias]
-    lg = log --all --decorate --oneline --graph
+    br = branch
+    ck = checkout
     g = log --graph --pretty='format:%Cred%h%Creset %Cgreen%ai%Creset %C(bold blue)%ae%Creset%C(yellow)%d%Creset %s'
+    lg = log --all --decorate --oneline --graph
     sc = commit -S
+    st = status
 {{- if eq .chezmoi.os "windows" }}
 [core]
     longpaths = true

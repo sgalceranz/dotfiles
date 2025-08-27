@@ -19,6 +19,13 @@
 {{-   $setup = promptString "type of setup (personal or work)" -}}
 {{- end -}}
 
+{{- $repos_ws := "" -}}
+{{- if hasKey . "repos_ws" -}}
+{{-   $repos_ws = .repos_ws -}}
+{{- else -}}
+{{-   $repos_ws = promptString "Directory for external content (repos, etc.)" -}}
+{{- end -}}
+
 {{- $gpgtool := "" -}}
 {{- if hasKey . "gpgtool" -}}
 {{-   $gpgtool = .gpgtool -}}
@@ -47,6 +54,8 @@ data:
   setup: {{ $setup | quote }}
   git_signingkey: {{ $git_signingkey | quote }}
   gpgtool: {{ $gpgtool | quote }}
+  recipient_encrypt: {{ $recipient_encrypt }}
+  repos_ws: {{ $repos_ws | quote }}
 
 encryption: gpg
 gpg:
