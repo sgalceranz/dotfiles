@@ -4,21 +4,22 @@ if [[ -x "$(command -v bw)" ]]; then
     bw-init() {
         [[ -z $BW_SESSION ]] && export BW_SESSION="$(bw unlock --raw || bw login)" && bw sync
     }
-fi
 
-bw-get() {
-    target=$1
-    readarray -t items < <(bw list items --search $target | jq -r '.[] | .name' | sort)
-    select item in "${items[@]}" quit
-    do
-        case $item in
-            "quit" ) break;;
-            * )
-                bw get item $item
-                break;;
-        esac
-    done
-}
+    bw-get() {
+        target=$1
+        readarray -t items < <(bw list items --search $target | jq -r '.[] | .name' | sort)
+        select item in "${items[@]}" quit
+        do
+            case $item in
+                "quit" ) break;;
+                * )
+                    bw get item $item
+                    break;;
+            esac
+        done
+    }
+
+fi
 
 # Start ssh-agent and add keys
 ssh-init() {
