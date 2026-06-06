@@ -67,9 +67,6 @@ if [[ -d ~/.bashrc.d ]]; then
 fi
 unset rc
 
-[[ -f "$HOME/.config/.environment" ]] && source $HOME/.config/.environment
-[[ -f "$HOME/.config/.aliases" ]] && source $HOME/.config/.aliases
-
 # Custom Functions
 
 # enable programmable completion features (you don't need to enable
