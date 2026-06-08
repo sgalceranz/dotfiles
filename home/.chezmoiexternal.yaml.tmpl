@@ -1,5 +1,4 @@
-{{ if eq .chezmoi.os "linux" }}
-
+{{ if eq .chezmoi.os "linux" -}}
 .config/git-prompt.sh:
   type: file
   url: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
@@ -21,4 +20,4 @@
   type: git-repo
   url: git@gitlab.com:sgalceranz/setup-manager-deprecated.git
 
-{{ end }}
+{{- end }}
