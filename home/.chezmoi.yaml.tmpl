@@ -25,7 +25,7 @@ data:
   personal: {{ $personal }}
   git_signingkey: {{ $git_signingkey | quote }}
   gpgtool: {{ $gpgtool | quote }}
-  recipient_encrypt: {{ $recipient_encrypt }}
+  recipient_encrypt: {{ $recipient_encrypt | quote }}
 {{- if eq .chezmoi.os "linux" }}
   repos_ws: {{ $repos_ws | quote }}
 {{- end }}
