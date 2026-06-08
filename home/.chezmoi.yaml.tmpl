@@ -1,50 +1,20 @@
-{{- $git_email := "" -}}
-{{- if hasKey . "git_email" -}}
-{{-   $git_email = .git_email -}}
-{{- else -}}
-{{-   $git_email = promptString "git email" -}}
-{{- end -}}
-
-{{- $git_name := "" -}}
-{{- if hasKey . "git_name" -}}
-{{-   $git_name = .git_name -}}
-{{- else -}}
-{{-   $git_name = promptString "git name" -}}
-{{- end -}}
-
-{{- $setup := "" -}}
-{{- if hasKey . "setup" -}}
-{{-   $setup = .setup -}}
-{{- else -}}
-{{-   $setup = promptString "type of setup (personal or work)" -}}
-{{- end -}}
+{{- $git_email := promptStringOnce . "git_email" "Git email" -}}
+{{- $git_name := promptStringOnce . "git_name" "Git name" -}}
+{{- $git_signingkey := promptStringOnce . "git_signingkey" "GPG signing key (Git)" -}}
+{{- $recipient_encrypt := promptStringOnce . "recipient_encrypt" "Recipient (encryption)" -}}
+{{- $personal := promptBoolOnce . "personal" "Personal setup?" -}}
+{{- $setup := promptStringOnce . "setup" "type of setup (personal or work)" -}}
 
 {{- $repos_ws := "" -}}
-{{- if hasKey . "repos_ws" -}}
-{{-   $repos_ws = .repos_ws -}}
-{{- else -}}
-{{-   $repos_ws = promptString "Directory for external content (repos, etc.)" -}}
+{{- if and (eq .chezmoi.os "linux") -}}
+{{- $repos_ws := promptStringOnce . "repos_ws" "Directory for external content (repos, etc.)" -}}
 {{- end -}}
 
 {{- $gpgtool := "" -}}
-{{- if hasKey . "gpgtool" -}}
-{{-   $gpgtool = .gpgtool -}}
+{{- if eq .chezmoi.os "windows" -}}
+{{-   $gpgtool = "C:/Program Files/GnuPG/bin/gpg.exe" -}}
 {{- else -}}
-{{-   $gpgtool = promptString "gpg path" -}}
-{{- end -}}
-
-{{- $git_signingkey := "" -}}
-{{- if hasKey . "git_signingkey" -}}
-{{-   $git_signingkey = .git_signingkey -}}
-{{- else -}}
-{{-   $git_signingkey = promptString "GPG signing key (Git)" -}}
-{{- end -}}
-
-{{- $recipient_encrypt := "" -}}
-{{- if hasKey . "recipient_encrypt" -}}
-{{-   $recipient_encrypt = .recipient_encrypt -}}
-{{- else -}}
-{{-   $recipient_encrypt = promptString "Recipient (encryption)" -}}
+{{-   $gpgtool := promptStringOnce . "gpgtool" "gpg path" -}}
 {{- end -}}
 
 ---
@@ -52,10 +22,13 @@ data:
   git_email: {{ $git_email | quote }}
   git_name: {{ $git_name | quote }}
   setup: {{ $setup | quote }}
+  personal: {{ $personal }}
   git_signingkey: {{ $git_signingkey | quote }}
   gpgtool: {{ $gpgtool | quote }}
   recipient_encrypt: {{ $recipient_encrypt }}
+{{- if eq .chezmoi.os "linux" }}
   repos_ws: {{ $repos_ws | quote }}
+{{- end }}
 
 encryption: gpg
 gpg:
